@@ -9,10 +9,11 @@ import { serverInfoLog } from 'helpers/serverInfoLog';
 
 import { AppModule } from './app.module';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   });
+
   console.log('here');
   const logger = app.get(Logger);
 

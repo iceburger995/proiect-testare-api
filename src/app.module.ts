@@ -1,9 +1,12 @@
 import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
+import { UserModule } from 'modules/User/user.module';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 const rootDir = __dirname;
 
@@ -31,6 +34,7 @@ const rootDir = __dirname;
         entities: [`${rootDir}/entities/*{.ts,.js}`],
       }),
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, Logger],
