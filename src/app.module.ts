@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
+import { AuthModule } from 'auth/auth.module';
 import { UserModule } from 'modules/User/user.module';
 
 import { AppController } from './app.controller';
@@ -35,6 +36,7 @@ const rootDir = __dirname;
       }),
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, Logger],

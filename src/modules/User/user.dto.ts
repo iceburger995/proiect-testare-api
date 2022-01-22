@@ -13,7 +13,9 @@ export class UserLoginDTO {
   @IsString()
   @MinLength(4)
   @MaxLength(20)
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'password too weak' })
+  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
+    message: 'incorrect format',
+  })
   password: string;
 
   @ApiProperty()

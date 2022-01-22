@@ -1,5 +1,5 @@
-import { Controller, Get, HttpStatus, Inject } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, HttpStatus, Inject, NotFoundException, Param, Post } from '@nestjs/common';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { UserDTO } from './user.dto';
 import { UserService } from './user.service';
@@ -18,24 +18,23 @@ export class UserController {
     return this.service.findAll();
   }
 
-  //   @Get()
-  //   @ApiPaginatedResponse(UserDTO)
-  //   findAll(@Query() query: PaginationQuery): Promise<Pagination<UserDTO>> {
-  //     return super.findAll(query);
-  //   }
+  @Get('/:id')
+  @ApiResponse({ status: HttpStatus.OK, type: UserDTO })
+  get(@Param('id') id: number): Promise<UserDTO> {
+    return this.service.get(id).then((data) => {
+      if (data) {
+        return data;
+      }
+      throw new NotFoundException();
+    });
+  }
 
-  //   @Get('/:id')
-  //   @ApiResponse({ status: HttpStatus.OK, type: UserDTO })
-  //   get(@Param('id') id: number): Promise<UserDTO> {
-  //     return super.get(id);
-  //   }
-
-  //   @Post()
-  //   @ApiBody({ type: UserDTO })
-  //   @ApiResponse({ status: HttpStatus.CREATED, type: UserDTO })
-  //   async create(@Body() data: UserDTO): Promise<UserDTO | undefined> {
-  //     return super.create(data);
-  //   }
+  @Post()
+  @ApiBody({ type: UserDTO })
+  @ApiResponse({ status: HttpStatus.CREATED, type: UserDTO })
+  async create(@Body() data: UserDTO): Promise<UserDTO | undefined> {
+    return this.service.create(data);
+  }
 
   //   @Put('/:id')
   //   @ApiBody({ type: UserDTO })

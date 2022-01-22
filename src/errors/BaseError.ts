@@ -8,6 +8,8 @@ export const ErrorCodeMessages: Record<ErrorCode, string> = {
   [ErrorCode.DUPLICATE]: 'Duplicate: {name}',
 
   [ErrorCode.UNCAUGHT_SQL_ERROR]: 'Failed to execute. Please contact your administrator.',
+
+  [ErrorCode.USER_DUPLICATE_EMAIL]: 'Duplicate User email: {email}.',
 };
 
 export class BaseError extends BadRequestException {

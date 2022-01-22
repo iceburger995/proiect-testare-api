@@ -5,4 +5,7 @@ export enum ErrorCode {
 
   // Database
   UNCAUGHT_SQL_ERROR = 900,
+
+  // User
+  USER_DUPLICATE_EMAIL = 600,
 }
