@@ -30,7 +30,7 @@ async function bootstrap(): Promise<void> {
   if (configService.get('SWAGGER_ENABLED') === 'true') {
     const config = new DocumentBuilder()
       .setTitle('API Documentation')
-      .setDescription('API documentation for FlaviaParenting')
+      .setDescription('API documentation for Admin Dashboard')
       .setVersion('0.1')
       .addBearerAuth()
       .build();
